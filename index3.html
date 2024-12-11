@@ -1,0 +1,122 @@
+<!-- event propagation -->
+<style>
+    #grandparent {
+        background-color: red;
+        height: 100px;
+        width: 100px;
+    }
+
+    #parent {
+        background-color: green;
+        height: 75px;
+        width: 75px;
+    }
+
+    #child {
+        background-color: blue;
+        height: 50px;
+        width: 50px;
+    }
+</style>
+
+<body>
+    <div id="grandparent">
+        GP
+        <div id="parent">
+            P
+            <div id="child">C</div>
+        </div>
+    </div>
+    <script>
+        const grandparent = document.querySelector('#grandparent');
+        const parent = document.querySelector('#parent');
+        const child = document.querySelector('#child');
+        // Bubbling...
+        // grandparent.addEventListener('click', function () {
+        //     console.log('Grandparent clicked');
+        // }, false);
+        // parent.addEventListener('click', function () {
+        //     console.log('Parent clicked');
+        // }, false);
+        // child.addEventListener('click', function () {
+        //     console.log('Child clicked');
+        // }, false);
+
+        // Capturing..
+        // grandparent.addEventListener('click', function () {
+        //     console.log('Grandparent clicked (Capturing)');
+        // }, true);
+        // parent.addEventListener('click', function () {
+        //     console.log('Parent clicked (Capturing)');
+        // }, true);
+        // child.addEventListener('click', function () {
+        //     console.log('Child clicked (Capturing)');
+        // }, true);
+
+        // false == bubbling (default)
+        // true == capturing
+
+        // grandparent.addEventListener('click', function () {
+        //     console.log('Grandparent clicked');
+        // }, true);
+
+        // parent.addEventListener('click', function () {
+        //     console.log('Parent clicked');
+        // }, false);
+
+        // child.addEventListener('click', function (event) {
+        //     console.log('Child clicked');
+        // }, false);
+        //         Grandparent clicked
+        // index3.html:68 Child clicked
+        // index3.html:64 Parent clicked
+
+
+        // grandparent.addEventListener('click', function () {
+        //     console.log('Grandparent clicked');
+        // }, false);
+
+        // parent.addEventListener('click', function () {
+        //     console.log('Parent clicked');
+        // }, true);
+
+        // child.addEventListener('click', function (event) {
+        //     console.log('Child clicked');
+        // }, true);
+        // ques - click on child.
+        //         Parent clicked
+        // index3.html:84 Child clicked
+        // index3.html:76 Grandparent clicked
+
+
+        // ques - click on parent.
+        //         Parent clicked
+        // index3.html:76 Grandparent clicked
+
+        grandparent.addEventListener('click', function () {
+            console.log('Grandparent clicked');
+        }, false);
+
+        parent.addEventListener('click', function () {
+            console.log('Parent clicked');
+        }, true);
+
+        child.addEventListener('click', function (event) {
+            console.log('Child clicked');
+        }, false);
+
+        child.addEventListener('click', function (event) {
+            console.log('Child clicked (capturing)');
+        }, true);
+
+        // quest - cick on Grandparent.
+        // Grandparent clicked
+
+        // ques - click on child
+        // Parent clicked
+        // index3.html:105 Child clicked
+        // index3.html:97 Grandparent clicked
+
+
+    </script>
+</body>
